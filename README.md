@@ -1,12 +1,13 @@
 1. Unzip 
-
-2. Composer install
+2. cd brandtask
+3. Composer install
 
 composer install
 3. create database 
 brandtask
 
-4. Add Database Credential like yours in `.env`
+4. copy .env.example and rename it .env
+5. Add Database Credential like yours in `.env`
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -15,14 +16,14 @@ DB_DATABASE=brandtask
 DB_USERNAME=root
 DB_PASSWORD=
 
-5. migrate
+6. migrate tables
 php artisan migrate
 
-4. Run Project inside that directory - 
+7. Run Project inside that directory - 
 
 php artisan serve
 
-5. Open in Browser 
+8. Open in Browser 
 
 http://localhost:8000
 
