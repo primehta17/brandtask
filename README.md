@@ -1,4 +1,4 @@
-1. Unzip 
+1. git clone https://github.com/primehta17/brandtask.git
 2. cd brandtask
 3. Composer install
 
