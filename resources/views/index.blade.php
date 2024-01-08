@@ -1,90 +1,185 @@
 @extends('layout')
 
 @section('main-content')
-<div>
-    <div class="float-start">
-        <h4 class="pb-3">My Tasks</h4>
-    </div>
-    <div class="float-end m-1">
-        <a href="{{ route('task.create') }}" class="btn btn-info">
-            <i class="fa fa-plus-circle"></i> Create Task
-        </a>
-    </div>
-    <div class="float-end m-1">
-        <a href="{{ route('indexprofile') }}" class="btn btn-info">
-            <i class="fa fa-plus-circle"></i> Add User
-        </a>
-    </div>
-    <div class="clearfix"></div>
-</div>
-<div class="card-container" id="sortable-list">
-
-    @foreach ($tasks as $task)
-    <div class="card mt-3">
-
-        <h5 class="card-header">
-            <i class="fa fa-bars m-2" aria-hidden="true"></i>
-            @if ($task->status === 'Todo')
-            {{ $task->title }}
-            @else
-            <del>{{ $task->title }}</del>
-            @endif
-            <span class="badge rounded-pill bg-warning text-dark">
-                {{ $task->created_at->diffForHumans() }}
-            </span>
-        </h5>
-
-        <div class="card-body">
-            <div class="card-text">
-                <div class="float-start">
-                    @if ($task->status === 'Todo')
-                    {{ $task->description }}
-                    @else
-                    <del>{{ $task->description }}</del>
-                    @endif
-                    <br>
-
-                    @if ($task->status === 'Todo')
-                    <span class="badge rounded-pill bg-info text-dark">
-                        Todo
-                    </span>
-                    @else
-                    <span class="badge rounded-pill bg-success text-white">
-                        Done
-                    </span>
-                    @endif
 
 
-                    <small>Last Updated - {{ $task->updated_at->diffForHumans() }} </small>
-                </div>
-                <div class="float-end">
-                    <form action="{{ route('task.destroy', $task->id) }}" style="display: inline" method="POST" onsubmit="return confirm('Are you sure to delete ?')">
-                        @csrf
-                        @method('DELETE')
-
-                        <button type="submit" class="btn btn-danger">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </form>
-
-                </div>
-                <div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="bg-white p-3">
+            <div class="float-start">
+                <h4 class="pb-3">My Tasks</h4>
             </div>
+            <div class="float-end m-1">
+                <button class="btn btn-white" id="toggle-form">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="card-container" id="sortable-list">
+
+            @foreach ($tasks as $task)
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">
+
+                        <div class="float-start">
+                            <span class="m-4">{{ sprintf('%02d', $task->id) }}</span>
+                            @if ($task->status === 'Todo')
+                            {{ $task->title }}
+                            @else
+                            <del>{{ $task->title }}</del>
+                            @endif
+                        </div>
+                        <div class="float-end" style="display: flex; align-items: center; margin-right: 10px;">
+                            @if ($task->status === 'Todo')
+                            <div class="circle-icons" style="margin-right: 5px;">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            @else
+                            <div class="circle-icon" style="margin-right: 5px;">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </div>
+                            @endif
+
+                            <form action="{{ route('task.destroy', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure to delete ?')">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        @if (count($tasks) === 0)
+        <div class="alert alert-danger p-2">
+            No Task Found. Please Create one task
+        </div>
+        @endif
+    </div>
+    <div class="col-md-6">
+        <div class="card card-body bg-light p-4" id="create-task-form" style="display: none;">
+            <button type="button" class="close" aria-label="Close" id="close-form">&times;</button>
+            <label for="title" class="form-label">Create task</label>
+            <form action="{{ route('task.store') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
+                </div>
+                <div class="mb-3">
+                    <textarea type="text" class="form-control" id="description" name="description" placeholder="Description" rows="5"></textarea>
+                </div>
+                <div class="mb-3">
+
+                    <select name="status" id="status" class="form-control">
+                        @foreach ($statuses as $status)
+                        <option value="{{ $status['value'] }}">{{ $status['label'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success full-length-btn">
+                    Create Task
+                </button>
+            </form>
         </div>
     </div>
-    @endforeach
 </div>
 
-@if (count($tasks) === 0)
-<div class="alert alert-danger p-2">
-    No Task Found. Please Create one task
-    <br>
-    <br>
-    <a href="{{ route('task.create') }}" class="btn btn-info">
-        <i class="fa fa-plus-circle"></i> Create Task
-    </a>
-</div>
-@endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

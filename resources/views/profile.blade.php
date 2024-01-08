@@ -57,12 +57,15 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('index') }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i>
-                    Cancel</a>
+                <!-- <a href="{{ route('index') }}" class="btn btn-secondary mr-2"><i class="fa fa-arrow-left"></i>
+                    Cancel</a> -->
 
-                <button type="submit" class="btn btn-success">
+                <!-- <button type="submit" class="btn btn-success">
                     <i class="fa fa-check"></i>
                     Save
+                </button> -->
+                <button type="submit" class="btn btn-success full-length-btn">
+                    Submit
                 </button>
             </form>
 

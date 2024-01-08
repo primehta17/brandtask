@@ -14,8 +14,20 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::orderBy('id', 'desc')->get();
-        return view('index', compact('tasks'));
+        $tasks = Task::orderBy('id', 'asc')->get();
+
+        $statuses = [
+            [
+                'label' => 'Todo',
+                'value' => 'Todo',
+            ],
+            [
+                'label' => 'Done',
+                'value' => 'Done',
+            ]
+        ];
+
+        return view('index', compact('tasks', 'statuses'));
     }
 
     /**
