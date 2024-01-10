@@ -1,12 +1,14 @@
 @extends('layout')
 
 @section('main-content')
-<div class="row full-height">
+
+
+<div class="row">
     <div class="col-md-6">
         <div class="bg-white p-3 top-space">
             <div class="float-start">
 
-                <h4 class="pb-3">My Tasks <span style="font-weight: 100" ;>({{ str_pad(count($tasks), 2, '0', STR_PAD_LEFT) }})</span></h4>
+                <h4 class="pb-3">My Tasks ({{ str_pad(count($tasks), 2, '0', STR_PAD_LEFT) }})</h4>
 
             </div>
             <div class="float-end m-1">
@@ -67,14 +69,14 @@
         </div>
         @endif
     </div>
-    <div class="col-md-6 full-height">
-        <div class="card card-body bg-light p-4 " id="create-task-form" style="display: none;">
-            <button type="button" class="close" aria-label="Close" id="close-form" style="font-size: 25px;"><i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+    <div class="col-md-6">
+        <div class="card card-body bg-light p-4" id="create-task-form" style="display: none;">
+            <button type="button" class="close" aria-label="Close" id="close-form">&times;</button>
             <label for="title" class="form-label">Create task</label>
             <form action="{{ route('task.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Task Name" required>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
                 </div>
                 <div class="mb-3">
                     <textarea type="text" class="form-control" id="description" name="description" placeholder="Description" rows="5"></textarea>
@@ -94,21 +96,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

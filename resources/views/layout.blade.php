@@ -7,122 +7,12 @@
 
     <title>Laravel</title>
     {{-- Fonts --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     {{-- Bootstrap CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <style>
-        * {
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
+    <link rel="stylesheet" href="{{ asset('styles.css') }}">
 
-        .main-content {
-            background-color: #F7F7F4;
-        }
-
-        .menuimage {
-            width: 42px;
-            height: 40px;
-        }
-
-        #create-task-form {
-            position: relative;
-        }
-
-        #close-form {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-            cursor: pointer;
-            border: none;
-            background: none;
-            color: #333;
-            /* Adjust the color as needed */
-        }
-
-        #close-form:hover {
-            color: #ff0000;
-            /* Adjust the hover color as needed */
-        }
-
-        .nav-item {
-            width: 318px;
-            height: 76px;
-            padding: 0px, 0px, 0px, 20px;
-            gap: 120px;
-        }
-
-        .circle-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: #28a745;
-        }
-
-        .card {
-            border-width: 0px 0px 1px 0px;
-            border-style: solid;
-            border-color: rgba(0, 0, 0, .125);
-        }
-
-        .circle-icons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            border: 2px solid black;
-        }
-
-        .circle-icon i {
-            font-size: 24px;
-            color: white;
-        }
-
-        .full-length-btn {
-            width: 100%;
-            background-color: #cc5200;
-            color: white;
-            text-align: left;
-            /* Align text to the left */
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .full-length-btn i {
-            margin-right: 5px;
-        }
-
-        .nav-link {
-            text-transform: uppercase;
-            font-size: 20px;
-
-        }
-
-        .nav-link:hover {
-            color: orange;
-            text-transform: uppercase;
-        }
-
-        .logo {
-            height: 64px;
-            margin: 40px;
-        }
-
-        @media (max-width: 480px) and (min-width: 200px) {
-            .logo {
-                height: 14px;
-                margin: 12px;
-            }
-        }
-    </style>
 
 </head>
 
@@ -133,25 +23,32 @@
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-dark min-vh-100">
-                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                        <!-- <span class="fs-4 d-none d-sm-inline bi bi-123"> </span> -->
-                        <img src="/logo.jpg" alt="Logo" class="logo">
-                    </a>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <header class="header" role="banner">
+                        <p class="logo">
+                            <a href="#">0 <span>3</span></a>
+                        </p>
+                        <div class="nav-wrap">
+                            <nav class="main-nav" role="navigation">
+                                <ul class="unstyled list-hover-slide">
+                                    <li><a href="{{ route('index') }}" class="active"> <span class="fs-4 fa fa-th-large"></span><span class="ms-1 d-none d-sm-inline p-3">
+                                                Tasks</span></a></li>
+                                    <li><a href="{{ route('createprofile') }}"> <span class="fs-4 fa fa-user-o"></span><span class="ms-1 d-none d-sm-inline p-3">
+                                                Users</span></a></li>
+                                    <li><a href="#"> <span class="fs-4 fa fa-pie-chart"></span><span class="ms-1 d-none d-sm-inline p-3">
+                                                Collections</span></a></li>
+                                    <li><a href="#"> <span class="fs-4 fa fa-suitcase"></span><span class="ms-1 d-none d-sm-inline p-3">
+                                                Projects</span></a></li>
+                                    <li><a href="#"> <span class="fs-4 fa fa-clock-o"></span><span class="ms-1 d-none d-sm-inline p-3">
+                                                Time Manager</span></a></li>
+                                    <li><a href="#"> <span class="fs-4 fa fa-calendar"></span><span class="ms-1 d-none d-sm-inline p-3">
+                                                Calendar</span></a></li>
+                                    <li><a href="#"> <span class="fs-4 fa fa-cog"></span><span class="ms-1 d-none d-sm-inline p-3">
+                                                Settings</span></a></li>
+                                </ul>
+                            </nav>
 
-                        <li>
-                            <a href="{{ route('index') }}" class="nav-link px-0 align-middle">
-                                <span class="fs-4 bi bi-list-task"></span><span class="ms-1 d-none d-sm-inline p-3"> New
-                                    Tasks</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('createprofile') }}" class="nav-link px-0 align-middle">
-                                <span class="fs-4 bi bi-people"></span><span class="ms-1 d-none d-sm-inline p-3"> New
-                                    Users</span>
-                            </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </header>
                     <hr>
                 </div>
             </div>
@@ -221,6 +118,40 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
